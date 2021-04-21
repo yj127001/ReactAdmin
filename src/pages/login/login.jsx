@@ -1,15 +1,14 @@
 // import React, { Component } from 'react'
 import React from 'react'
-import {Link,withRouter} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 // import axios from 'axios'
 import { message,Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './login.less'
 import {reqLogin} from '../../api'
 
-    const Login = () => {
+    const Login = (px) => {
         const onFinish = async(values) => {
-          console.log('Received values of form: ', values);
            const {username,password} = values;
            const response = await reqLogin(username,password)
 
@@ -17,7 +16,8 @@ import {reqLogin} from '../../api'
            if(result.length===0){
             message.error('用户名或密码不正确');
            }else{
-            message.success('登录成功成功',1);
+            message.success('登录成功',1);
+            px.history.replace('/')
            }              
         };
         
@@ -87,5 +87,5 @@ import {reqLogin} from '../../api'
         )
     }
 // }
-export default withRouter(Login)
+export default Login
 

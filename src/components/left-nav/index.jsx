@@ -2,23 +2,59 @@ import React, { Component } from 'react'
 import { Menu, Button } from 'antd'
 import {
   AppstoreOutlined,
-  PieChartOutlined,
-  DesktopOutlined,
-  ContainerOutlined
+  PieChartOutlined
 } from '@ant-design/icons'
-import {Link} from 'react-router-dom'
+import {Link,withRouter} from 'react-router-dom'
 import logo from '../../assets/images/logo.png'
 import './index.less'
+import menuList from '../../config/menuConfig'
 
 const { SubMenu } = Menu;
+class LeftNav extends Component {
+    /*根据数据数组生成标签数组*/
+    /**map()  +  递归调用*
+    getMenuList = (menuList) =>{
+        return menuList.map(item=>{
+            if(!item.children){
+                return(
+                    <Menu.Item key="1" icon={<PieChartOutlined />}>
+                        <Link to={item.to}>{item.title}</Link>
+                    </Menu.Item>
+                )
+            }else{
+                return(
+                    <SubMenu key="sub2" icon={<AppstoreOutlined />} title={item.title}>
+                        {this.getMenuList(item.children)}
+                    </SubMenu>
+                )
+            }
+        })
+    }
+    */
 
-
-export default class LeftNav extends Component {
-    state = {
-        collapsed: false,
-      };
-
+     /*根据数据数组生成标签数组*/
+    /*reduce()  +  递归调用*/
+    getMenuList_reduce = (menprList) =>{
+        return menprList.reduce((pre,item)=>{
+            if(!item.children){
+                pre.push((
+                    <Menu.Item key={item.key} icon={<PieChartOutlined />}>
+                        <Link to={item.to}>{item.title}</Link>
+                    </Menu.Item>
+                ))
+            }else{
+                pre.push((
+                    <SubMenu key={item.key} icon={<AppstoreOutlined />} title={item.title}>
+                        {this.getMenuList_reduce(item.children)}
+                    </SubMenu>
+                ))
+            }
+            return pre
+        },[])
+    }
     render() {
+        const path = this.props.location.pathname
+
         return (
             <div>
                  <header className='left-nav-header'>
@@ -28,32 +64,17 @@ export default class LeftNav extends Component {
                 
                  <div>
                     <Menu
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    mode="inline"
-                    theme="dark"
-                    inlineCollapsed={this.state.collapsed}
-                    >
-                    <Menu.Item key="1" icon={<PieChartOutlined />}>
-                        <Link to='/home'>首页</Link>
-                    </Menu.Item>
-                    <Menu.Item key="2" icon={<DesktopOutlined />}>
-                        <Link to='/user'>用户管理</Link>
-                    </Menu.Item>
-                    <Menu.Item key="3" icon={<ContainerOutlined />}>  
-                        <Link to='/role'>角色管理</Link>
-                    </Menu.Item>
-                    <SubMenu key="sub2" icon={<AppstoreOutlined />} title="说说">
-                        <Menu.Item key="9" icon={<AppstoreOutlined />}>   
-                            <Link to='/category'>品类管理</Link>
-                        </Menu.Item>
-                        <Menu.Item key="10" icon={<AppstoreOutlined />}>                  
-                            <Link to='/product'>说说管理</Link>
-                        </Menu.Item>
-                    </SubMenu>
+                        defaultOpenKeys={['/message']}
+                        mode="inline"
+                        theme="dark"
+                        selectedKeys={[path]}
+                        >
+                         {/* {this.getMenuList(menuList)}   */}
+                         {this.getMenuList_reduce(menuList)}
                     </Menu>
                 </div>
             </div>
         )
     }
 }
+export default withRouter(LeftNav)

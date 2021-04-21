@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import { Layout } from 'antd';
-import {Route,Switch} from 'react-router-dom'
+import {Route,Switch,Redirect} from 'react-router-dom'
 import './admin.less'
 import '../../components/header'
 import '../../components/left-nav'
@@ -33,6 +33,7 @@ export default class Admin extends Component{
                             <Route path='/category' component={Category}/>
                             <Route path='/role' component={Role}/>
                             <Route path='/user' component={User}/>
+                            <Redirect to='/home'/>
                         </Switch>
                     </Content>
                     <Footer>Footer</Footer>
