@@ -21,11 +21,10 @@ export default class Admin extends Component{
             <Layout className='admin'>
                 <Sider>
                     <LeftNav/>
-
                 </Sider>
-                <Layout> 
+                <Layout className='admin-right'> 
                     <Header/>
-                    <Content>
+                    <Content style={{backgroundColor:'rgba(192,192,192,0.1)',margin:'30px'}}>
                         <Switch>
                             <Route path='/category' component={Category}/>
                             <Route path='/product' component={Product}/>
