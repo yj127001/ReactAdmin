@@ -6,13 +6,14 @@ import '../../components/header'
 import '../../components/left-nav'
 import LeftNav from '../../components/left-nav'
 import Header from '../../components/header'
+import Footer from '../../components/footer'
 import Category from '../category/category'
 import Product from '../product/product'
 import Home from '../home/home'
 import Role from '../role/role'
 import User from '../user/user'
 
-const {Footer, Sider, Content } = Layout;
+const {Sider, Content } = Layout;
 
 export default class Admin extends Component{
     render(){
@@ -24,7 +25,7 @@ export default class Admin extends Component{
                 </Sider>
                 <Layout className='admin-right'> 
                     <Header/>
-                    <Content style={{backgroundColor:'rgba(192,192,192,0.1)',margin:'30px'}}>
+                    <Content style={{backgroundColor:'rgba(255, 255, 255)',margin:'30px'}}>
                         <Switch>
                             <Route path='/category' component={Category}/>
                             <Route path='/product' component={Product}/>
@@ -35,7 +36,7 @@ export default class Admin extends Component{
                             <Redirect to='/home'/>
                         </Switch>
                     </Content>
-                    <Footer>Footer</Footer>
+                    <Footer/>
                 </Layout>
             </Layout>
             </>

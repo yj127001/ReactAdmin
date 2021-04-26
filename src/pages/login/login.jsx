@@ -23,11 +23,11 @@ import {reqLogin} from '../../api'
         
         return (
             <div className='login'>
-                <header className='login-header'>
-                    {/* <img src={logo} alt=""/> */}
-                </header>
+                {/* <header className='login-header'>
+                    <img src={logo} alt=""/>
+                </header> */}
                 <section className='login-content'>
-                    <h2>欢迎来到登录界面</h2>
+                    <h2 className="login-header">欢迎来到登录界面</h2>
                     <Form
                         name="normal_login"
                         className="login-form"
