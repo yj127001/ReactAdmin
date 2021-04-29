@@ -70,6 +70,8 @@ export default class Category extends Component {
     showUpdate = (category)=>{
         /*保存分类对象*/
         this.category = category
+        console.log(this)
+        
         /*更新状态*/
         this.setState({
             isModalVisible:2,
@@ -81,6 +83,8 @@ export default class Category extends Component {
         this.setState({
             isModalVisible:0
         })
+        /*在取消按钮的函数里进行测试清空功能*/
+        this.form.resetFields() 
     }
     render() {
         const {categories,parentId,subCategories,parentName,isModalVisible} = this.state
@@ -125,11 +129,11 @@ export default class Category extends Component {
                 bordered 
                 pagination={{defaultPageSize:6,showQuickJumper:true}}
                 rowKey='_id'/>
-                <Modal title="添加分类" visible={isModalVisible===1} onOk={this.showAddForm} onCancel={this.handleCancel}>
+                <Modal title="添加分类" getContainer={false} visible={isModalVisible===1} onOk={this.showAddForm} onCancel={this.handleCancel}>
                     <AddForm/>
                 </Modal>
-                <Modal title="修改分类" visible={isModalVisible===2} onOk={this.showUpdateForm} onCancel={this.handleCancel}>
-                    <UpdateForm categoryName={category.name}/>
+                <Modal title="修改分类" getContainer={false} visible={isModalVisible===2} onOk={this.showUpdateForm} onCancel={this.handleCancel}>
+                    <UpdateForm {...category} setForm={(form)=>{this.form = form}}/>{/*父组件向子组件传递一个函数，子组件通过调用该函数，向父组件传递它（子组件）的form表单*/}
                 </Modal>
             </Card>
         )

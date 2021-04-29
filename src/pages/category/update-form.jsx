@@ -1,22 +1,28 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Form,Input} from 'antd'
 import PropTypes from 'prop-types'
 
+const UpdateForm = (props) => {
+    const categoryName = props.name
 
-export default class UpdateForm extends Component {
-    static propTypes = {
-        categoryName:PropTypes.string.isRequired
+    UpdateForm.propTypes = {
+        categoryName:PropTypes.string.isRequired,
+        setForm:PropTypes.func.isRequired
     }
-    render() {
-        const {categoryName} = this.props
-        console.log('查看传递过来的this.props值',this.props)
-        console.log('验证',categoryName)
-        
-
-        return (
-            <Form initialValues={{categoryName}}>
-                <Input placeholder='修改分类名称' defaultValue={categoryName}/>
-            </Form>
-        )
-    }
+    /*抄袭官网的一句话*/
+    const [form] = Form.useForm();
+    /*抄袭官网的一句话*/
+    console.log('传递px过来的值', props)
+    props.setForm(form)
+    return (
+        <Form form={form}>
+            <Form.Item name="updateCa">
+                <Input defaultValue={categoryName}/>
+            </Form.Item>        
+        </Form>
+    )
 }
+
+export default UpdateForm
+
+
