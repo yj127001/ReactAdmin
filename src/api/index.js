@@ -23,10 +23,10 @@ export const reqRegest = (user) =>ajax('/register',user,'POST')
 export const reqAddUser = (user) =>ajax('/manage/user/add',user,'POST')
 
 /*获取一级二姐分类列表*/ 
-export const reqCategorys = (parentId) =>ajax('/manage/category/list',{parentId},'POST')
+export const reqCategorys = (parentId) =>ajax('/manage/category/list',{parentId},'GET')
 
 /*添加分类*/
-export const reqAddCategory = (categoryName,parentId) =>ajax('/manage/category/add',{categoryName,parentId},'POST')
+export const reqAddCategory = ({id,parentId, categoryName}) =>ajax('/manage/category/add',{id,categoryName,parentId},'POST')
 
 /*更新分类*/
 export const reqUpdateCategory = ({categoryId,categoryName}) =>ajax('/manage/category/list',{categoryId,categoryName},'POST')

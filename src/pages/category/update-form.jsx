@@ -16,7 +16,7 @@ const UpdateForm = (props) => {
     props.setForm(form)
     return (
         <Form form={form}>
-            <Form.Item name="updateCa">
+            <Form.Item name='categoryName'>
                 <Input defaultValue={categoryName}/>
             </Form.Item>        
         </Form>
