@@ -1,0 +1,61 @@
+.picsBox {
+  width: 100%;
+  height: 650px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  .picsBig {
+    width: 900px;
+    height: 100%;
+  }
+  .picsList {
+    width: 900px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .imgBox {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+}
+ 
+.swiperBox {
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  font-size: 16px;
+  --swiper-theme-color: white;
+}
+ 
+.swiperBoxThumb {
+  width: 900px;
+  height: 650px;
+  margin-top: 20px;
+  .swiperBoxThumbSlide {
+    position: relative;
+    width: 20%;
+    height: 150px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .thumbImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+.swiper-slide-thumb-active {
+  opacity: 1 !important;
+}
